@@ -7,6 +7,7 @@ import { signInWithEmail } from "@/server/users"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import {
   Card,
   CardContent,
@@ -128,9 +129,9 @@ export function LoginForm({
             </div>
             <div className="mt-4 text-center text-xs md:text-sm">
               Don&apos;t have an account?{" "}
-              <a href="#" className="underline underline-offset-4 text-xs md:text-sm">
+              <Link href="/signup" className="underline underline-offset-4 text-xs md:text-sm">
                 Sign up
-              </a>
+              </Link>
             </div>
             </form>
         </CardContent>
