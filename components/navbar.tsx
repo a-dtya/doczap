@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import clsx from "clsx"
+import Logo from "@/components/ui/logo"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,9 +35,11 @@ export default function Navbar() {
         )}
       >
         {/* Logo */}
-        <Link href="/" className="text-xl font-semibold text-black dark:text-white">
-          DocZap
+        <div className="flex items-center space-x-6">
+        <Link href="/" className="flex items-center space-x-2">
+          <Logo className="h-12 w-auto" />
         </Link>
+        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-6">
@@ -52,11 +55,14 @@ export default function Navbar() {
         </nav>
 
         {/* CTA Button (Desktop) */}
-        <div className="hidden md:block">
-          <Link href="/signup">
-            <Button size="sm">Get Started</Button>
-          </Link>
-        </div>
+        <div className="hidden md:flex items-center space-x-4">
+        <Link
+          href="/signup"
+          className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-800 transition"
+        >
+          Get Started
+        </Link>
+      </div>
 
         {/* Mobile Menu */}
         <div className="md:hidden">
