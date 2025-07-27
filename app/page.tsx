@@ -1,11 +1,10 @@
-import { HeroHeader } from "@/components/header";
-import HeroSection from "@/components/hero-section";
+import React from 'react'
+import Hero from '@/components/hero'
 
 export default function Home() {
   return (
     <main>
-      <HeroHeader/>
-      <HeroSection />
+      <Hero />
     </main>
     
   );
