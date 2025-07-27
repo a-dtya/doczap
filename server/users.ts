@@ -14,7 +14,7 @@ export const signInWithEmail = async(email:string,password:string)=>{
         return {success:true,message:"User signed in successfully"}
     }catch(error){
         console.log("Error @server/users.ts signInWithEmail",error)
-        return {success:false,message:"Something went wrong"}
+        return {success:false,message:"Invalid Email or Password"}
     }   
 }
 

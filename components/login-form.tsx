@@ -71,8 +71,8 @@ export function LoginForm({
       
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-sm md:text-lg font-semibold text-gray-900 dark:text-white">Login to your account</CardTitle>
+          <CardDescription className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
@@ -85,11 +85,11 @@ export function LoginForm({
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="m@example.com" {...field} />
+                      <Input className="text-xs md:text-sm" placeholder="m@example.com" {...field} />
                     </FormControl>
-                    <FormDescription>
+                    <FormDescription className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                       Enter your email address
                     </FormDescription>
                     <FormMessage />
@@ -104,15 +104,15 @@ export function LoginForm({
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white">Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="min 8 characters" {...field} />
+                        <Input className="text-xs md:text-sm" type="password" placeholder="min 8 characters" {...field} />
                       </FormControl>
                       <div className="flex items-center">
-                      <FormDescription>
+                      <FormDescription className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                         Enter your password
                       </FormDescription>
-                      <a href="#" className="ml-auto inline-block text-sm underline-offset-4 hover:underline">Forgot your password?</a>  
+                      <a href="#" className="ml-auto inline-block text-xs md:text-sm underline-offset-4 hover:underline">Forgot your password?</a>  
                       </div>
                       <FormMessage />
                     </FormItem>
@@ -120,15 +120,15 @@ export function LoginForm({
                 />
               </div>
               <div className="flex flex-col gap-3">
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : "Login"}
+                <Button type="submit" className="w-[60%] md:w-full mx-auto" disabled={loading}>
+                  {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <span className="text-xs md:text-sm">Login</span>}
                 </Button>
                 
               </div>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="mt-4 text-center text-xs md:text-sm">
               Don&apos;t have an account?{" "}
-              <a href="#" className="underline underline-offset-4">
+              <a href="#" className="underline underline-offset-4 text-xs md:text-sm">
                 Sign up
               </a>
             </div>
