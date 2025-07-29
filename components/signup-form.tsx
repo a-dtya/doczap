@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/form"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
   name: z.string().min(3),
@@ -38,6 +39,7 @@ export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const [loading,setLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -55,7 +57,8 @@ export function SignUpForm({
       const response = await signUpWithEmail(values.email,values.password,values.name)
       if(response.success){
         setLoading(false)
-        toast.success(response.message)
+        toast.success("Please check your email for verification")
+        // router.push('/dashboard')
       }
       else{
         setLoading(false)
