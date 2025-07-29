@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/form"
 import { toast } from "sonner"
 import { Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const formSchema = z.object({
   email: z.email(),
@@ -37,6 +38,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const [loading,setLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -54,6 +56,7 @@ export function LoginForm({
       if(response.success){
         setLoading(false)
         toast.success(response.message)
+        router.push('/dashboard')
       }
       else{
         setLoading(false)
