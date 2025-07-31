@@ -33,8 +33,9 @@ export function PageWrapper({children, breadcrumbs}: PageWrapperProps){
                 </BreadcrumbList>
             </Breadcrumb>  
             </div>
+            <div className="p-2">
                 <Logout/>
-           
+            </div>
             </div>          
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

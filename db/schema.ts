@@ -3,8 +3,11 @@ import {
   text,
   timestamp,
   boolean,
-  integer,
+  uuid,
+  jsonb
 } from "drizzle-orm/pg-core";
+
+import { relations } from "drizzle-orm";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -66,9 +69,49 @@ export const verification = pgTable("verification", {
   ),
 });
 
+let foldersTable: any;
+
+export const folders = foldersTable = pgTable("folders", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull(),
+  parentId: uuid("parent_id").references(() => foldersTable.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const documents = pgTable("documents", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  title: text("title").notNull(),
+  content: jsonb("content").notNull(),
+  folderId: uuid("folder_id").references(() => folders.id),
+  authorId: uuid("author_id").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+})
+
+export const folderRelations = relations(folders, ({ one, many }) => ({
+  parent: one(folders, {
+    fields: [folders.parentId],
+    references: [folders.id],
+  }),
+  children: many(folders),
+  documents: many(documents),
+}));
+
+export const documentRelations = relations(documents, ({ one }) => ({
+  folder: one(folders, {
+    fields: [documents.folderId],
+    references: [folders.id],
+  }),
+}));
+
+export type Folder = typeof folders.$inferSelect
+export type Document = typeof documents.$inferSelect
+
 export const schema = {
   user,
   session,
   account,
   verification,
+  folders,
+  documents,
 }
