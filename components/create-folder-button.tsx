@@ -64,7 +64,7 @@ export default function CreateFolderButton(){
     }
     return <Dialog>
     <DialogTrigger asChild>
-        <Button variant="outline">Create Folder</Button>
+        <Button variant="outline" className="w-max">Create Folder</Button>
     </DialogTrigger>
     <DialogContent>
     <DialogHeader>

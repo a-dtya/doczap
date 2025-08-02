@@ -1,23 +1,37 @@
+"use client"
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
-
   } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Folder } from "@/lib/types"
 import Link from "next/link"
-import { Trash2 } from "lucide-react"
-
-interface FolderCardProps {
-folder: Folder
-}
-
-export default function FolderCard({ folder }: FolderCardProps) {
+import { Eye, Trash2, Loader2 } from "lucide-react"
+import { deleteFolderById } from "@/server/docs"
+import { toast } from "sonner"
+import { useRouter } from "next/navigation"
+import { useState } from "react"
+export default function FolderCard({ folder }: {folder: Partial<Folder>}) {
+    const router = useRouter()
+    const [loading, setLoading] = useState(false)
+    const handleDelete = async (id: string) => {
+        try {
+            setLoading(true)
+            await deleteFolderById(id)
+            toast.success("Folder deleted successfully")
+            router.refresh()
+        } catch (error) {
+            console.log("Error @components/folder-card.tsx handleDelete",error)
+            toast.error("Something went wrong")
+        }
+        finally {
+            setLoading(false)
+        }
+    }
 return (
     <Card>
     <CardHeader>
@@ -25,13 +39,13 @@ return (
         <CardDescription>{folder.createdAt?.toDateString() ?? ""}</CardDescription>
     </CardHeader>
     <CardContent>
-        <p>{folder.documents.length} documents</p>
+        <p>{folder.documents?.length ?? 0} documents</p>
     </CardContent>
-    <CardFooter>
+    <CardFooter className="flex justify-end gap-2">
         <Link href={`/dashboard/folder/${folder.id}`}>
-            <Button variant="outline">View</Button>
+            <Button variant="outline"><Eye className="h-4 w-4"/></Button>
         </Link>
-        <Button variant="destructive"><Trash2 className="h-4 w-4"/></Button>
+        <Button variant="destructive" onClick={() => handleDelete(folder.id ?? "")} disabled={loading}>{loading ? <Loader2 className="h-4 w-4 animate-spin"/> : <Trash2 className="h-4 w-4"/>}</Button>
     </CardFooter>
     </Card>
 )
