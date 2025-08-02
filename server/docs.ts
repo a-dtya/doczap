@@ -149,6 +149,29 @@ export const createDocument = async (values: InsertDocument) => {
   }
 }
 
+export const getDocuments = async (folderId: string) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    })
+
+    const userId = session?.user?.id
+    if (!userId) {
+      return { success: false, message: "User not authenticated" }
+    }
+
+    const result = await db
+      .select()
+      .from(documents)
+      .where(and(eq(documents.folderId, folderId), eq(documents.authorId, userId)))
+
+    return { success: true, message: "Documents fetched", data: result }
+  } catch (error) {
+    console.log("Error @server/docs.ts getDocuments", error)
+    return { success: false, message: "Something went wrong" }
+  }
+}
+
 export const getDocumentById = async (id: string) => {
   try {
     const session = await auth.api.getSession({
