@@ -100,6 +100,7 @@ export const documentRelations = relations(documents, ({ one }) => ({
 export type Folder = typeof folders.$inferSelect
 export type InsertFolder = typeof folders.$inferInsert
 export type Document = typeof documents.$inferSelect
+export type InsertDocument = typeof documents.$inferInsert
 
 export const schema = {
   user,
