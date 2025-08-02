@@ -10,13 +10,10 @@ export const auth = betterAuth({
     emailVerification: {
         sendVerificationEmail: async ( { user, url, token }, request) => {
             const { data, error } = await resend.emails.send({
-                from: 'DocZap <adithyavinod1943@gmail.com>',
+                from: 'DocZap <onboarding@resend.dev>',
                 to: [user.email],
                 subject: 'DocZap: Verify your email address',
-                react: EmailVerification({
-                    userName: user.name,
-                    verificationUrl: url,
-                }),
+                react: <EmailVerification userName={user.name} verificationUrl={url}/>,
               });
         },
         sendOnSignUp:true,

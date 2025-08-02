@@ -1,5 +1,6 @@
 "use client"
 
+import CreateFolderButton from "@/components/create-folder-button";
 import { PageWrapper } from "@/components/page-wrapper";
 
 export default function Dashboard() {
@@ -11,6 +12,7 @@ export default function Dashboard() {
             }
         ]}>
             <h1>Dashboard</h1>
+            <CreateFolderButton />
         </PageWrapper>
     )
 }
