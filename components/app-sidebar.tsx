@@ -44,11 +44,11 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
       ...folders?.map((folder)=>{
         return {
           name: folder.name,
-          url: `/dashboard/${folder.id}`,
+          url: `/dashboard/folder/${folder.id}`,
           items: folder.documents.map((document)=>{
             return {
               title: document.title,
-              url: `/dashboard/document/${document.id}`,
+              url: `/dashboard/folder/${folder.id}/document/${document.id}`,
             }
           })
         }

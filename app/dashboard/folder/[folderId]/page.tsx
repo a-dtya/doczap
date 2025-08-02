@@ -4,8 +4,6 @@
 
 import { getFolderById, getDocuments } from "@/server/docs"
 import { PageWrapper } from "@/components/page-wrapper"
-import RichTextEditor from "@/components/rich-text-editor"
-import { JSONContent } from "@tiptap/react"
 import {Folder, Document} from "@/lib/types"
 export default async function DocumentPage({ params }: { params: { folderId: string } }) {
     const folderId = params.folderId
@@ -18,8 +16,6 @@ export default async function DocumentPage({ params }: { params: { folderId: str
         createdAt: folder.data?.createdAt ?? new Date(),
         documents: documents.data ?? [],
     }
-
-
 
     return <PageWrapper breadcrumbs={[
         {
