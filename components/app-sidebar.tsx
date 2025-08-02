@@ -23,23 +23,7 @@ import {
 
 import { getFolders, getDocuments } from "@/server/docs"
 
-type Folder = {
-  id: string;
-  name: string;
-  authorId: string;
-  createdAt: Date | null;
-  documents: Document[];
-}
-
-type Document = {
-  id: string;
-  title: string;
-  content: unknown;
-  folderId: string | null;
-  authorId: string;
-  createdAt: Date | null;
-  updatedAt: Date | null;
-}
+import { Folder, Document } from "@/lib/types"
 
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const folders: Folder[] = []
@@ -64,7 +48,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
           items: folder.documents.map((document)=>{
             return {
               title: document.title,
-              url: `/dashboard/${folder.id}/${document.id}`,
+              url: `/dashboard/document/${document.id}`,
             }
           })
         }
