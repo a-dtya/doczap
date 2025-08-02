@@ -69,12 +69,10 @@ export const verification = pgTable("verification", {
   ),
 });
 
-let foldersTable: any;
-
-export const folders = foldersTable = pgTable("folders", {
+export const folders = pgTable("folders", {
   id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
-  parentId: uuid("parent_id").references(() => foldersTable.id).notNull(),
+  authorId: uuid("author_id").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -88,12 +86,7 @@ export const documents = pgTable("documents", {
   updatedAt: timestamp("updated_at").defaultNow(),
 })
 
-export const folderRelations = relations(folders, ({ one, many }) => ({
-  parent: one(folders, {
-    fields: [folders.parentId],
-    references: [folders.id],
-  }),
-  children: many(folders),
+export const folderRelations = relations(folders, ({ many }) => ({
   documents: many(documents),
 }));
 
