@@ -1,8 +1,6 @@
 import * as React from "react"
 import { ChevronRight } from "lucide-react"
-
-import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+import Logo from "@/components/ui/logo"
 import {
   Collapsible,
   CollapsibleContent,
@@ -58,11 +56,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
-        <SearchForm />
+        <Logo className="h-8 w-auto"/>
       </SidebarHeader>
       <SidebarContent className="gap-0">
         {/* We create a collapsible SidebarGroup for each parent. */}

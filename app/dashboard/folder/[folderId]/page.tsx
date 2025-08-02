@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { getFolderById, getDocuments } from "@/server/docs"
