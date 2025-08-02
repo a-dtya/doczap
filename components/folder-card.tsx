@@ -11,11 +11,12 @@ import { Button } from "@/components/ui/button"
 import { Folder } from "@/lib/types"
 import Link from "next/link"
 import { Eye, Trash2, Loader2 } from "lucide-react"
-import { deleteFolderById } from "@/server/docs"
+import { deleteFolderById, getDocuments } from "@/server/docs"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 export default function FolderCard({ folder }: {folder: Partial<Folder>}) {
+    const [documents, setDocuments] = useState<Partial<Document>[]>([])
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const handleDelete = async (id: string) => {
@@ -32,6 +33,18 @@ export default function FolderCard({ folder }: {folder: Partial<Folder>}) {
             setLoading(false)
         }
     }
+useEffect(() => {
+    if(!folder.id) {
+        toast.error("Folder id not found")
+    }
+    const fetchDocuments = async () => {
+        const documents = await getDocuments(folder?.id ?? "")
+        if(documents.success){
+            setDocuments(documents.data ?? [])
+        }
+    }
+    fetchDocuments()
+}, [folder])
 return (
     <Card>
     <CardHeader>
@@ -39,7 +52,7 @@ return (
         <CardDescription>{folder.createdAt?.toDateString() ?? ""}</CardDescription>
     </CardHeader>
     <CardContent>
-        <p>{folder.documents?.length ?? 0} documents</p>
+        <p>{documents?.length ?? 0} documents</p>
     </CardContent>
     <CardFooter className="flex justify-end gap-2">
         <Link href={`/dashboard/folder/${folder.id}`}>

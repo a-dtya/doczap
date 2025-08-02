@@ -1,3 +1,5 @@
+"use client"
+
 import { updateDocument } from '@/server/docs'
 import '@styles/styles.scss'
 
@@ -154,7 +156,7 @@ function MenuBar({ editor }: { editor: Editor }) {
 }
 
 interface RichTextEditorProps {
-    content?: JSONContent[]
+    content?: JSONContent
     documentId?: string
 }
 
@@ -164,13 +166,17 @@ export default function RichTextEditor({ content, documentId }: RichTextEditorPr
     autofocus: true,
     editable: true,
     injectCSS: false,
+    immediatelyRender: false,
     onUpdate: ({ editor }) => {
       if (documentId) {
-        updateDocument(documentId, editor.getJSON())
+        updateDocument(documentId, {content: editor.getJSON()})
       }
     },
-    content
+    content: content
   })
+  if (!editor) {
+    return <div>Loading Editor...</div>;
+  }
   return (
     <div>
       <MenuBar editor={editor} />

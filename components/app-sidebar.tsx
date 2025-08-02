@@ -1,6 +1,7 @@
 import * as React from "react"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, File } from "lucide-react"
 import Logo from "@/components/ui/logo"
+import { SearchForm } from "@/components/search-form"
 import {
   Collapsible,
   CollapsibleContent,
@@ -57,6 +58,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
     <Sidebar {...props}>
       <SidebarHeader>
         <Logo className="h-8 w-auto"/>
+        <SearchForm/>
       </SidebarHeader>
       <SidebarContent className="gap-0">
         {/* We create a collapsible SidebarGroup for each parent. */}
@@ -85,7 +87,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
                     {item.items.map((item) => (
                       <SidebarMenuItem key={item.title}>
                         <SidebarMenuButton asChild>
-                          <a href={item.url}>{item.title}</a>
+                          <a href={item.url}><File className="mr-2 h-4 w-4"/>{item.title}</a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))}

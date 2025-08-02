@@ -1,4 +1,3 @@
-"use client"
 
 import CreateFolderButton from "@/components/create-folder-button";
 import { PageWrapper } from "@/components/page-wrapper";

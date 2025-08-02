@@ -70,9 +70,11 @@ export const verification = pgTable("verification", {
 });
 
 export const folders = pgTable("folders", {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey(), // stays uuid
   name: text("name").notNull(),
-  authorId: uuid("author_id").notNull(),
+  authorId: text("author_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -81,10 +83,12 @@ export const documents = pgTable("documents", {
   title: text("title").notNull(),
   content: jsonb("content").notNull(),
   folderId: uuid("folder_id").references(() => folders.id),
-  authorId: uuid("author_id").notNull(),
+  authorId: text("author_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
-})
+});
 
 export const folderRelations = relations(folders, ({ many }) => ({
   documents: many(documents),

@@ -26,13 +26,12 @@ return <div className="flex flex-col gap-4">
             <Breadcrumb>
                 <BreadcrumbList>
                 {breadcrumbs.map((b, i) => (
-                    <>
+                
                     <BreadcrumbItem key={i}>
                     <BreadcrumbLink href={b.href}>{b.label}</BreadcrumbLink>
                     {i < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
                     </BreadcrumbItem>
-                    </>
-                ))}
+                    ))}
                 </BreadcrumbList>
             </Breadcrumb>
             </div>

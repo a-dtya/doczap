@@ -124,7 +124,7 @@ export const deleteFolderById = async (id: string) => {
 /**
  * Document CRUD
  */
-export const createDocument = async (values: InsertDocument) => {
+export const createDocument = async (values: Partial<InsertDocument>) => {
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
@@ -136,13 +136,13 @@ export const createDocument = async (values: InsertDocument) => {
     }
 
     const doc = await db.insert(documents).values({
-      title: values.title,
-      content: values.content,
-      folderId: values.folderId,
+      title: values.title ? values.title : "",
+      content: values.content ? values.content : "",
+      folderId: values.folderId ? values.folderId : "",
       authorId: userId,
     })
 
-    return { success: true, message: "Document created successfully", data: doc }
+    return { success: true, message: "Document created successfully" }
   } catch (error) {
     console.log("Error @server/docs.ts createDocument", error)
     return { success: false, message: "Something went wrong" }
@@ -237,7 +237,7 @@ export const updateDocument = async (id: string, updates: Partial<InsertDocument
       } as any)
       .where(and(eq(documents.id, id), eq(documents.authorId, userId)))
 
-    return { success: true, message: "Document updated", data: result }
+    return { success: true, message: "Document updated"}
   } catch (error) {
     console.log("Error @server/docs.ts updateDocument", error)
     return { success: false, message: "Something went wrong" }
