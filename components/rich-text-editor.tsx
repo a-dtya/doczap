@@ -1,5 +1,3 @@
-
-
 import { updateDocument } from '@/server/docs'
 import '@styles/styles.scss'
 
