@@ -1,7 +1,6 @@
 "use client"
 
 import { updateDocument } from '@/server/docs'
-import '@styles/styles.scss'
 
 import { TextStyleKit } from '@tiptap/extension-text-style'
 import type { Editor, JSONContent } from '@tiptap/react'

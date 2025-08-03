@@ -1,5 +1,54 @@
 
+/* Tiptap Editor Styles */
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
 
+  &:focus {
+    outline: none;
+  }
+}
+
+/* --- MENU BAR STYLES --- */
+/* This is the part that makes the menu look like buttons */
+.control-group {
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 0.875rem;
+    color: #333;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #f0f0f0;
+      border-color: #bbb;
+    }
+
+    &.is-active {
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
 /* Basic editor styles */
 .tiptap {
     :first-child {
