@@ -25,7 +25,7 @@ export default function Hero() {
         </div>
         <div className="mt-12">
           <Image
-            src="https://cdn.dribbble.com/userupload/3731187/file/original-ac3e9a7d8526aeafe8ac447f6731afcb.png?resize=2048x1537&vertical=center" // Replace with your actual screenshot
+            src="https://ik.imagekit.io/uwttbk1d1/demo-image.png?updatedAt=1754220746987" // Replace with your actual screenshot
             alt="DocZap Screenshot"
             width={1200}
             height={700}

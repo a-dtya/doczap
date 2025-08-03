@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.dribbble.com",
+        hostname: "ik.imagekit.io",
       },
     ],
   },

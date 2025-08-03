@@ -57,8 +57,8 @@ export function SignUpForm({
       const response = await signUpWithEmail(values.email,values.password,values.name)
       if(response.success){
         setLoading(false)
-        toast.success("Please check your email for verification")
-        // router.push('/dashboard')
+        toast.success("Congratulations! You're Signed in. Please Hold on!")
+        router.push('/dashboard')
       }
       else{
         setLoading(false)
