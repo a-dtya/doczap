@@ -7,6 +7,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import { formatDistanceToNow } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { Folder } from "@/lib/types"
 import Link from "next/link"
@@ -49,7 +50,7 @@ return (
     <Card>
     <CardHeader>
         <CardTitle>{folder.name}</CardTitle>
-        <CardDescription>{folder.createdAt?.toDateString() ?? ""}</CardDescription>
+        <CardDescription>{formatDistanceToNow(folder.createdAt ?? new Date(), { addSuffix: true })}</CardDescription>
     </CardHeader>
     <CardContent>
         <p>{documents?.length ?? 0} documents</p>

@@ -7,6 +7,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+import { formatDistanceToNow } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { Document } from "@/lib/types"
 import Link from "next/link"
@@ -37,7 +38,7 @@ return (
     <Card>
     <CardHeader>
         <CardTitle>{document.title}</CardTitle>
-        <CardDescription>{document.createdAt?.toDateString() ?? ""}</CardDescription>
+        <CardDescription>{formatDistanceToNow(document.createdAt ?? new Date(), { addSuffix: true })}</CardDescription>
     </CardHeader>
     <CardContent>
         <p>{content?.length ?? 0} characters</p>

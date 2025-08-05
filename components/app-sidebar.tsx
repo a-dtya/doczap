@@ -1,29 +1,17 @@
 import * as React from "react"
-import { ChevronRight, File } from "lucide-react"
 import Logo from "@/components/ui/logo"
 import { SearchForm } from "@/components/search-form"
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
-import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
 import SidebarData from "./sidebar-data"
 
 import { getFolders, getDocuments } from "@/server/docs"
 
-import { Folder, Document } from "@/lib/types"
+import { Folder } from "@/lib/types"
 
 export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const folders: Folder[] = []
@@ -62,7 +50,6 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
         <SearchForm/>
       </SidebarHeader>
       <SidebarContent className="gap-0">
-        {/* We create a collapsible SidebarGroup for each parent. */}
         <SidebarData data={data}/>
       </SidebarContent>
       <SidebarRail />
